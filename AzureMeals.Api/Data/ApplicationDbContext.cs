@@ -1,14 +1,15 @@
+using AzureMeals.Api.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace AzureMeals.Api.Data 
 {
-  public class ApplicationDbContext : IdentityDbContext
+  public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
   {
-    private readonly DbContextOptions _dbContextOptions;
     public ApplicationDbContext(DbContextOptions options) : base(options)
     {
-      _dbContextOptions = options;
     }
+
+    public DbSet<ApplicationUser> ApplicationUsers { get; set; }
   }
 }
