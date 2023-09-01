@@ -11,5 +11,6 @@ namespace AzureMeals.Api.Data
     }
 
     public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+    public DbSet<MenuItem> MenuItems { get; set; }
   }
 }
