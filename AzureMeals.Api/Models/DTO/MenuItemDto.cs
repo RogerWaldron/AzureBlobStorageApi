@@ -1,0 +1,15 @@
+using System.ComponentModel.DataAnnotations;
+
+namespace AzureMeals.Api.Models
+{
+  public class MenuItemDto
+  {
+    public int Id { get; set;}
+    public required string Name { get; set;}
+    public required string Description { get; set;}
+    public double Price { get; set;}
+    public string Category { get; set;} = "";
+    public string Tag { get; set;} = "";
+    public string Image { get; set;} = "";
+  }
+}
