@@ -7,12 +7,12 @@ namespace AzureMeals.Api.Controllers
 {
     [Route("api/[controller]")]
   [ApiController]
-  public class MenuItemController : ControllerBase
+  public class AzureFileStorageController : ControllerBase
   {
     private readonly ApplicationDbContext _dbContext;
     private readonly IAzureBlobStorage _storage;
 
-    public MenuItemController(ApplicationDbContext dbContext, IAzureBlobStorage storage)
+    public AzureFileStorageController(ApplicationDbContext dbContext, IAzureBlobStorage storage)
     {
         _dbContext = dbContext;
         _storage = storage;
