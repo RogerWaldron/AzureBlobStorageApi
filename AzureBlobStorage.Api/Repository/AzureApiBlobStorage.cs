@@ -9,14 +9,14 @@ namespace AzureBlobStorage.Api.Repository
     public class AzureApiBlobStorage : IAzureBlobStorage
     {
         private readonly string? _storageConnectionString;
-        private readonly string? _storageContainerName;
+        private readonly string _storageContainerName;
         private readonly ILogger<AzureApiBlobStorage> _logger;
 
         public AzureApiBlobStorage(IConfiguration configuration,
           ILogger<AzureApiBlobStorage> logger)
         {
           _storageConnectionString = configuration.GetValue<string>("StorageConnection");
-          _storageContainerName = "files";
+          _storageContainerName = "file";
           _logger = logger;
         }
 
@@ -79,6 +79,9 @@ namespace AzureBlobStorage.Api.Repository
         public async Task<List<AzureBlobDto>> BlobsGetAllAsync()
         {
           BlobContainerClient container = new BlobContainerClient(_storageConnectionString, _storageContainerName);
+          await container.CreateIfNotExistsAsync();
+          container.SetAccessPolicy(Azure.Storage.Blobs.Models.PublicAccessType.Blob);
+
           List<AzureBlobDto> files = new ();
           
           await foreach (BlobItem item in container.GetBlobsAsync())
