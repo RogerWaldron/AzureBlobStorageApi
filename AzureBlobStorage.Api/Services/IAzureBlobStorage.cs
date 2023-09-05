@@ -1,6 +1,6 @@
-using AzureMeals.Api.Models;
+using AzureBlobStorage.Api.Models;
 
-namespace AzureMeals.Api.Services
+namespace AzureBlobStorage.Api.Services
 {
   public interface IAzureBlobStorage
   {   

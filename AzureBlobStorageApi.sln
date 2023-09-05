@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureMeals.Api", "AzureMeals.Api\AzureMeals.Api.csproj", "{3B6E2798-0158-4B33-9959-B3860FA454AD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureBlobStorage.Api", "AzureBlobStorage.Api\AzureBlobStorage.Api.csproj", "{3B6E2798-0158-4B33-9959-B3860FA454AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,20 +1,18 @@
-using AzureMeals.Api.Data;
-using AzureMeals.Api.Models;
-using AzureMeals.Api.Services;
+using AzureBlobStorage.Api.Models;
+using AzureBlobStorage.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AzureMeals.Api.Controllers
+namespace AzureBlobStorage.Api.Controllers
 {
     [Route("api/[controller]")]
   [ApiController]
   public class AzureFileStorageController : ControllerBase
   {
-    private readonly ApplicationDbContext _dbContext;
     private readonly IAzureBlobStorage _storage;
 
-    public AzureFileStorageController(ApplicationDbContext dbContext, IAzureBlobStorage storage)
+    public AzureFileStorageController(IAzureBlobStorage storage)
     {
-        _dbContext = dbContext;
+        // _dbContext = dbContext;
         _storage = storage;
     }
 

@@ -1,4 +1,4 @@
-namespace AzureMeals.Api.Models
+namespace AzureBlobStorage.Api.Models
 
 {
     public class AzureBlobResponse
