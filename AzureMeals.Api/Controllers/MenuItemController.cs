@@ -1,11 +1,7 @@
-using System.Linq.Expressions;
-using System.Net;
 using AzureMeals.Api.Data;
 using AzureMeals.Api.Models;
+using AzureMeals.Api.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.FileProviders;
 
 namespace AzureMeals.Api.Controllers
 {
@@ -14,76 +10,59 @@ namespace AzureMeals.Api.Controllers
   public class MenuItemController : ControllerBase
   {
     private readonly ApplicationDbContext _dbContext;
-    private ApiResponse _response;
+    private readonly IAzureBlobStorage _storage;
 
-    public MenuItemController(ApplicationDbContext dbContext)
+    public MenuItemController(ApplicationDbContext dbContext, IAzureBlobStorage storage)
     {
         _dbContext = dbContext;
-        _response = new ApiResponse();
+        _storage = storage;
     }
 
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-      try {
-        var results = await _dbContext.MenuItems.ToListAsync();
-        if (results == null) {
-          _response.IsSuccess = false;
-          return BadRequest(_response);
-        }
-
-        _response.Data = results;
-        _response.StatusCode = HttpStatusCode.OK;
-      }
-      catch (Exception ex) {
-        _response.IsSuccess = false;
-        _response.ErrorMessages.Append(Convert.ToString(ex.Message));
-      }
-      
-      return Ok(_response);
+      List<AzureBlobDto>? files = await _storage.BlobsGetAllAsync();
+      return Ok(files);
     }
 
-    [HttpGet("{id:int}")]
-    public async Task<IActionResult> GetById(int id)
+    [HttpGet("{filename}")]
+    public async Task<IActionResult> Download(string filename)
     {
-      if (id == 0) {
-        _response.IsSuccess = false;
-        _response.StatusCode = HttpStatusCode.BadRequest;
-
-        return BadRequest(_response);
-      }
-
-      MenuItem? menuItem = await _dbContext.MenuItems.FirstOrDefaultAsync(item => item.Id == id );
       
-      if (menuItem == null) {
-        _response.IsSuccess = false;
-        _response.StatusCode = HttpStatusCode.NotFound;
+      AzureBlobDto? file = await _storage.BlobDownloadAsync(filename);
 
-        return NotFound(_response);
+      if (file == null)
+      {
+        return StatusCode(StatusCodes.Status500InternalServerError, $"File {filename} could not be downloaded.");
+      } 
+
+      return File(file.Content, file.ContentType, file.Name);
+    }
+
+    [HttpDelete("{filename}")]
+    public async Task<IActionResult> Delete(string filename)
+    {
+      AzureBlobResponseDto response = await _storage.BlobDeleteAsync(filename);
+
+      if (response.Error)
+      {
+        return StatusCode(StatusCodes.Status500InternalServerError, response.Status);
       }
 
-      _response.Data = menuItem;
-      _response.StatusCode = HttpStatusCode.OK;
+      return Ok(response);
+    }
 
-      return Ok(_response);
+    [HttpPost]
+    public async Task<IActionResult> Upload(IFormFile file)
+    {
+      AzureBlobResponseDto? response = await _storage.BlobUploadAsync(file);
+
+      if (response.Error)
+      {
+        return StatusCode(StatusCodes.Status500InternalServerError, response.Status);
+      }
+
+      return Ok(response);
     }
   }
-
-  // [HttpPost]
-  // public async Task<ActionResult<ApiResponse>> CreateMenuItem([FromForm]MenuItem newMenuItem)
-  // {
-  //   try {
-  //     if (ModelState.IsValid)
-  //     {
-
-  //     }
-  //   }
-  //   catch (Exception ex)
-  //   {
-  //     _response.IsSuccess = false;
-  //     _res _response.ErrorMessages.Append(Convert.)
-  //   } 
-
-  //   return _response;
-  // }
 }
