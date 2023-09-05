@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AzureMeals.Api.Data 
 {
-  public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+  public class ApplicationDbContext : IdentityDbContext
   {
     public ApplicationDbContext(DbContextOptions options) : base(options)
     {
@@ -22,7 +22,7 @@ namespace AzureMeals.Api.Data
                     Id = 1,
                     Name = "Spring Roll",
                     Description = "Fusc tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
-                    Image = "https://dotnetimages.blob.core.windows.net/meals/spring roll.jpg",
+                    Image = new AzureBlob(),
                     Price = 7.99,
                     Category = "Appetizer",
                     Tag = ""
@@ -31,7 +31,7 @@ namespace AzureMeals.Api.Data
                     Id = 2,
                     Name = "Idli",
                     Description = "Fusc tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
-                    Image = "https://dotnetimages.blob.core.windows.net/meals/idli.jpg",
+                    Image = new AzureBlob(),
                     Price = 8.99,
                     Category = "Appetizer",
                     Tag = ""
@@ -40,7 +40,7 @@ namespace AzureMeals.Api.Data
                     Id = 3,
                     Name = "Panu Puri",
                     Description = "Fusc tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
-                    Image = "https://dotnetimages.blob.core.windows.net/meals/pani puri.jpg",
+                    Image = new AzureBlob(),
                     Price = 8.99,
                     Category = "Appetizer",
                     Tag = "Best Seller"
@@ -49,7 +49,7 @@ namespace AzureMeals.Api.Data
                     Id = 4,
                     Name = "Hakka Noodles",
                     Description = "Fusc tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
-                    Image = "https://dotnetimages.blob.core.windows.net/meals/hakka noodles.jpg",
+                    Image = new AzureBlob(),
                     Price = 10.99,
                     Category = "Entrée",
                     Tag = ""
@@ -58,7 +58,7 @@ namespace AzureMeals.Api.Data
                     Id = 5,
                     Name = "Malai Kofta",
                     Description = "Fusc tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
-                    Image = "https://dotnetimages.blob.core.windows.net/meals/malai kofta.jpg",
+                    Image = new AzureBlob(),
                     Price = 12.99,
                     Category = "Entrée",
                     Tag = "Top Rated"
@@ -67,7 +67,7 @@ namespace AzureMeals.Api.Data
                     Id = 6,
                     Name = "Paneer Pizza",
                     Description = "Fusc tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
-                    Image = "https://dotnetimages.blob.core.windows.net/meals/paneer pizza.jpg",
+                    Image = new AzureBlob(),
                     Price = 11.99,
                     Category = "Entrée",
                     Tag = ""
@@ -76,7 +76,7 @@ namespace AzureMeals.Api.Data
                     Id = 7,
                     Name = "Paneer Tikka",
                     Description = "Fusc tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
-                    Image = "https://dotnetimages.blob.core.windows.net/meals/paneer tikka.jpg",
+                    Image = new AzureBlob(),
                     Price = 13.99,
                     Category = "Entrée",
                     Tag = "Chef's Special"
@@ -85,7 +85,7 @@ namespace AzureMeals.Api.Data
                     Id = 8,
                     Name = "Carrot Love",
                     Description = "Fusc tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
-                    Image = "https://dotnetimages.blob.core.windows.net/meals/carrot love.jpg",
+                    Image = new AzureBlob(),
                     Price = 4.99,
                     Category = "Dessert",
                     Tag = ""
@@ -94,7 +94,7 @@ namespace AzureMeals.Api.Data
                     Id = 9,
                     Name = "Rasmalai",
                     Description = "Fusc tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
-                    Image = "https://dotnetimages.blob.core.windows.net/meals/rasmalai.jpg",
+                    Image = new AzureBlob(),
                     Price = 4.99,
                     Category = "Dessert",
                     Tag = "Chef's Special"
@@ -103,7 +103,7 @@ namespace AzureMeals.Api.Data
                     Id = 10,
                     Name = "Sweet Rolls",
                     Description = "Fusc tincidunt maximus leo, sed scelerisque massa auctor sit amet. Donec ex mauris, hendrerit quis nibh ac, efficitur fringilla enim.",
-                    Image = "https://dotnetimages.blob.core.windows.net/meals/sweet rolls.jpg",
+                    Image = new AzureBlob(),
                     Price = 3.99,
                     Category = "Dessert",
                     Tag = "Top Rated"
