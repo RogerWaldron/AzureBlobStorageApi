@@ -1,23 +1,22 @@
-
 using Azure;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
-using AzureMeals.Api.Models;
-using AzureMeals.Api.Services;
+using AzureBlobStorage.Api.Models;
+using AzureBlobStorage.Api.Services;
 
-namespace AzureMeals.Api.Repository
+namespace AzureBlobStorage.Api.Repository
 {
-    public class AzureBlobStorage : IAzureBlobStorage
+    public class AzureApiBlobStorage : IAzureBlobStorage
     {
         private readonly string? _storageConnectionString;
         private readonly string? _storageContainerName;
-        private readonly ILogger<AzureBlobStorage> _logger;
+        private readonly ILogger<AzureApiBlobStorage> _logger;
 
-        public AzureBlobStorage(IConfiguration configuration,
-          ILogger<AzureBlobStorage> logger)
+        public AzureApiBlobStorage(IConfiguration configuration,
+          ILogger<AzureApiBlobStorage> logger)
         {
           _storageConnectionString = configuration.GetValue<string>("StorageConnection");
-          _storageContainerName = "meals";
+          _storageContainerName = "files";
           _logger = logger;
         }
 
