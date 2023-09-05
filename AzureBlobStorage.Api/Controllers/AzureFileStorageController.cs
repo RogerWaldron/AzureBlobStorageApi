@@ -12,14 +12,14 @@ namespace AzureBlobStorage.Api.Controllers
 
     public AzureFileStorageController(IAzureBlobStorage storage)
     {
-        // _dbContext = dbContext;
-        _storage = storage;
+      _storage = storage;
     }
 
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
       List<AzureBlobDto>? files = await _storage.BlobsGetAllAsync();
+
       return Ok(files);
     }
 
